@@ -14,8 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Cl\\Proxiable\\": "src/proxiable",
-            "Cl\\Traitable\\": "src/traitable"
+            "Cl\\": "src/",
         }
     }
 

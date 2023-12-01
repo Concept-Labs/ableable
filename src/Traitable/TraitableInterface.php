@@ -1,5 +1,5 @@
 <?php
-namespace Cl\Core\Traitable;
+namespace Cl\Traitable;
 
 interface TraitableInterface
 {
