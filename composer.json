@@ -14,8 +14,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Cl\\": "src/"
-        }
+            "Cl\\Able\\": "src/"
+        },
+        "files": [ "autoload.php" ]
     }
 
 }

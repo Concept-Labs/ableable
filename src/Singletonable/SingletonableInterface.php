@@ -1,6 +1,6 @@
 <?php
-namespace Cl\Core\Singletonable;
-use Cl\Core\Traitable\TraitableInterface;
+namespace Cl\Able\Singletonable;
+use Cl\Able\Traitable\TraitableInterface;
 
 interface SingletonableInterface extends TraitableInterface
 {
@@ -11,5 +11,5 @@ interface SingletonableInterface extends TraitableInterface
      * 
      * @return SingletonableInterface
      */
-    public static function singleton(...$args);
+    public static function singletonify(...$args);
 }

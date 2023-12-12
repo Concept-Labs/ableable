@@ -1,9 +1,7 @@
 <?php
-namespace Cl\Proxiable\Subjectable;
+namespace Cl\Able\Proxiable\Subjectable;
 
-use Cl\Proxiable\ProxiableException;
-use Cl\Proxiable\ProxiableInterface;
-use Cl\Proxiable\ProxyInterface;
+use Cl\Able\Proxiable\ProxyInterface;
 
 interface SubjectableProxyInterface extends ProxyInterface
 {

@@ -1,7 +1,7 @@
 <?php
-namespace Cl\Proxiable\Subjectable;
+namespace Cl\Able\Proxiable\Subjectable;
 
-use Cl\Proxiable\ProxiableInterface;
+use Cl\Able\Proxiable\ProxiableInterface;
 
 
 

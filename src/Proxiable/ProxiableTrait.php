@@ -1,6 +1,6 @@
 <?php
 
-namespace Cl\Proxiable;
+namespace Cl\Able\Proxiable;
 
 trait ProxiableTrait
 {

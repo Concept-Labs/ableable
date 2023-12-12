@@ -1,21 +1,19 @@
 <?php
-namespace Cl\Proxiable\Subjectable;
+namespace Cl\Able\Proxiable\Subjectable;
 
-use Cl\Proxiable\Exception\ProxiableException;
 
 abstract class SubjectableProxy implements SubjectableProxyInterface
 {
+    /**
+     * Body trait
+     */
+    use SubjectableProxyTrait;
+    
     /**
      * Magic methods trait
      */
     use SubjectableProxyMagicTrait;
 
-    /**
-     * Self instance storage
-     *
-     * @var array
-     */
-    private static array $_staticStorage = [];
     /**
      * Subject class
      *
@@ -49,42 +47,5 @@ abstract class SubjectableProxy implements SubjectableProxyInterface
         $this->subjectConstructorParameterssubjectClass = $parameters;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getSubjectClass(): string
-    {
-        return $this->subjectClass;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getSubjectConstructorParameters(): array|null
-    {
-        return $this->subjectConstructorParameterssubjectClass;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getSubject(): SubjectableInterface
-    {
-        if (!$this->subject instanceof SubjectableInterface) {
-            try {
-                $subjectClass = $this->getSubjectClass(); // :/
-                $this->subject 
-                = new $subjectClass(...$this->getSubjectConstructorParameters());
-                echo("<br>{$this->getSubjectClass()} subject constructed<br/>");
-            } catch (\Throwable $e) {
-                throw new ProxiableException($this, $e);
-            }
-        }
-        return $this->subject;
-    }
-
-    private static function _staticAttach()
-    {
-        //static::$_staticStorage[spl_object_hash(static)];
-    }
+    
 }

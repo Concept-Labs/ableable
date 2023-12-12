@@ -1,6 +1,6 @@
 <?php
 
-namespace Cl\Proxiable\Subjectable;
+namespace Cl\Able\Proxiable\Subjectable;
 
 /**
  * @see SubjectableInterface
@@ -8,10 +8,10 @@ namespace Cl\Proxiable\Subjectable;
 trait SubjectableTrait
 {
 
-    use \Cl\Proxiable\ProxiableTrait;
+    use \Cl\Able\Proxiable\ProxiableTrait;
 
     /**
-     * @see \Cl\Proxiable\ProxiableInterface::proxify()
+     * @see \Cl\Able\Proxiable\ProxiableInterface::proxify()
      */
     public static function proxify(mixed ...$parameters): SubjectableProxyInterface
     {
@@ -29,5 +29,10 @@ trait SubjectableTrait
                 new class (static::class, ...$parameters) extends SubjectableProxy {
                 };
         })();
+    }
+
+     function getSubjectable()
+    {
+
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Cl\Core\Singletonable;
+namespace Cl\Able\Singletonable;
 
 trait SingletonableTrait
 {

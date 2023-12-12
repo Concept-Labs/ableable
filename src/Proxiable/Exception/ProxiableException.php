@@ -1,7 +1,7 @@
 <?php
 
-namespace Cl\Proxiable\Exception;
-use Cl\Proxiable\ProxyInterface;
+namespace Cl\Able\Proxiable\Exception;
+use Cl\Able\Proxiable\ProxyInterface;
 
 class ProxiableException extends \RuntimeException
 {

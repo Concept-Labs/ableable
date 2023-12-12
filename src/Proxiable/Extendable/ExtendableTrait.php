@@ -1,39 +1,41 @@
 <?php
 
-namespace Cl\Proxiable\Extendable;
+namespace Cl\Able\Proxiable\Extendable;
 
-use Cl\Proxiable\ProxiableException;
+use Cl\Able\Proxiable\Extendable\ExtendableProxyInterface;
+use Cl\Able\Proxiable\Exception\ProxiableException;
+
 
 trait ExtendableTrait
 {
 
-    use \Cl\Proxiable\ProxiableTrait;
+    use \Cl\Able\Proxiable\ProxiableTrait;
 
-    public static function proxify(mixed ...$parameters): 
+    public static function proxify(mixed ...$parameters): ExtendableProxyInterface
     {
-        if (!class_alias(static::class, 'Proxiable', false)) {
-            //@TODO
-//            throw new ProxiableException("Unable to add class alias");
-        }
-        $___proxy = new class (static::class, ...$args) extends \Proxiable /*implements ProxiedInterface*/{
-            use ExtendableProxyTrait;
+        die('proxify');
 
-            private function ___hasParentConstructor()
+        if (!class_alias(static::class, 'SelfExtendableProxy', false)) {
+            die('class alias');
+            //@TODO
+            //throw new ProxiableException(new class(), new \Exception(), "Unable to add class alias");
+        }
+
+
+        $proxy = new class (...$parameters) extends \SelfExtendableProxy implements ExtendableProxyInterface {
+            
+            use ExtendableProxyTrait;
+            
+            private array $___constructorParameters = [];
+            private bool $___initialized = false;
+            public function __construct(...$parameters)
             {
-                // if ((new \ReflectionMethod($this->___subjectClass, parent::class))->isPublic()) {
-                //     return true;
-                // }
-                try {
-                    if ((new \ReflectionMethod($this->___subjectClass, '__construct'))->isConstructor()) {
-                        return true;
-                    }
-                } catch (\ReflectionException $e) {
-                    //has no constructor
-                }
-                return false;
+                $this->___constructorParameters = $parameters;
             }
+
         };
-        //class_alias(static::class, null);
-        return $___proxy;
+        class_alias(static::class, '', false);
+        
+        return $proxy;
     }
 }

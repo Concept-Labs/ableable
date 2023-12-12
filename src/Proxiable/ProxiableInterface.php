@@ -1,5 +1,5 @@
 <?php
-namespace Cl\Proxiable;
+namespace Cl\Able\Proxiable;
 use Cl\Traitable\TraitableInterface;
 
 /**

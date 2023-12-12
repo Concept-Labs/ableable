@@ -1,7 +1,7 @@
 <?php
-namespace Cl\Proxiable\Extendable;
+namespace Cl\Able\Proxiable\Extendable;
 
-use Cl\Proxiable\ProxiableInterface;
+use Cl\Able\Proxiable\ProxiableInterface;
 
 interface ExtendableInterface extends ProxiableInterface
 {

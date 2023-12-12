@@ -1,7 +1,7 @@
 <?php
-namespace Cl\Proxiable\Subjectable;
+namespace Cl\Able\Proxiable\Subjectable;
 
-use \Cl\Proxiable\Exception\ProxiableException;
+use \Cl\Able\Proxiable\Exception\ProxiableException;
 
 trait SubjectableProxyMagicTrait
 {
@@ -19,8 +19,8 @@ trait SubjectableProxyMagicTrait
         
         try {
             match (true) {
-                method_exists($this, $method) && !strcmp("__call", $method) => $result = $this->$method(...$parameters),
                 method_exists($this->getSubjectClass(), "__call") => $result = $this->getSubject()->__call($method, $parameters),
+                method_exists($this, $method) && !strcmp("__call", $method) => $result = $this->$method(...$parameters),
                 default => $result = $this->getSubject()->$method(...$parameters)
             };
         } catch (\Throwable $e) {
@@ -41,9 +41,10 @@ trait SubjectableProxyMagicTrait
     {
         try {
             match (true) {
-                property_exists($this, $name) => $value = $this->$name,
-                method_exists($this->$this->getSubjectClass(), "__get") => $this->getSubject()->__get($name),
-                default => $value = $this->getSubject()->$name
+                method_exists($this->$this->getSubjectClass(), "__get") => $value = $this->getSubject()->__get($name),
+                property_exists($this->getSubjectClass(), $name) => $value = $this->getSubject()->$name,
+                //@note dynamic properies are deprecated since php 8.2
+                default => $value = $this->$name
             };
         } catch (\Throwable $e) {
             throw new ProxiableException($this, $e);
@@ -64,10 +65,10 @@ trait SubjectableProxyMagicTrait
     {
         try {
             match (true) {
-                property_exists($this, $name) => $this->$name = $value,
                 method_exists($this->getSubjectClass(), "__set") => $this->getSubject()->__set($name, $value),
                 property_exists($this->getSubjectClass(), $name) => $this->getSubject()->$name = $value,
-                default => null
+                //@note dynamic properies are deprecated since php 8.2
+                default => $this->$name = $value,
             };
         } catch (\Throwable $e) {
             throw new ProxiableException($this, $e);
